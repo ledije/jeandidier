@@ -53,3 +53,26 @@ def afficher_damier_ascii(dictio):
     affichage += '\n'
     return affichage
 
+def game():
+    """Jouer en console"""
+    analyser = analyser_commande()
+    partie_id = initialiser_partie(analyser.idul)
+    print('\n')
+    if analyser.lister:
+        print(lister_parties (analyser.idul), '\n')
+    print(afficher_damier_ascii(partie_id[1]))
+    while 1:
+        try:
+            position = list(map(int, input('Entrez les coordonnees du coup  x, y: ').strip().split(',')))
+            mouvement = input('Entrez le type de coup MH, MV ou D: ')
+        except ValueError:
+            print('La valeur entree est incorrect')
+            position = list(map(int, input('Entrez les coordonnees du coup  x, y: ').strip().split(',')))
+            mouvement = input('Entrez le type de coup MH, MV ou D: ')
+        else:
+            print(afficher_damier_ascii(jouer_coup(partie_id[0], mouvement, position)))
+
+
+
+if __name__ == '__main__':
+    game()
