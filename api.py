@@ -22,3 +22,14 @@ def initialiser_partie(idul):
         raise RuntimeError(rep['message'])
     return rep['id'], rep['état']
 
+def jouer_coup(id, type, pos):
+    '''Jouer un coup'''
+    reponse = requests.post(base_url +'jouer/', data={'id':id, 'type':type, 'pos':pos})
+    reponse = reponse.json()
+    msg = 'message'
+    win = 'gagnant'
+    if (msg in reponse.keys()):
+        raise RuntimeError(reponse['message'])
+    elif (win in reponse.keys()):
+        raise StopIteration(reponse["gagnant"])
+    return reponse['état']
