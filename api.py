@@ -13,3 +13,12 @@ def lister_parties(idul):
         return list(map(lambda x : x['id'], reponse['parties']))
     raise RuntimeError(reponse['message'])
 
+def initialiser_partie(idul):
+    '''Initialiser la partie'''
+    rep = requests.post(base_url +'initialiser/', data={'idul': idul})
+    rep = rep.json()
+    msg = 'message'
+    if (msg in rep.keys()):
+        raise RuntimeError(rep['message'])
+    return rep['id'], rep['état']
+
