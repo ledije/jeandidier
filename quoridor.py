@@ -1,5 +1,6 @@
 """ module quoridor"""
 import argparse
+from api import initialiser_partie, lister_parties, jouer_coup
 
 def analyser_commande():
     """Parser les valeurs """
